@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <com.itcast.googleplayteach.ui.widget.PagerTab
+    <com.example.googleplay.view.PagerTab
         android:id="@+id/pager_tab"
         android:layout_width="match_parent"
         android:layout_height="42dp"
