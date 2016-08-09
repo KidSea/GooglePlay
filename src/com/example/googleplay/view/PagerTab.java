@@ -19,7 +19,7 @@ import android.widget.TextView;
 
 import com.example.googleplay.R;
 import com.example.googleplay.activity.BaseActivity;
-import com.example.utils.UIUtils;
+import com.example.googleplay.utils.UIUtils;
 /**
  * 1.引入V7包，创建BaseActivity
  * 2.创建状态选择器

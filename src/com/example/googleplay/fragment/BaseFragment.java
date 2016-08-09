@@ -1,8 +1,10 @@
 package com.example.googleplay.fragment;
 
+import java.util.ArrayList;
+
+import com.example.googleplay.utils.UIUtils;
 import com.example.googleplay.view.LoadingPage;
 import com.example.googleplay.view.LoadingPage.ResultState;
-import com.example.utils.UIUtils;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -60,5 +62,21 @@ public abstract class BaseFragment extends Fragment {
 		if (mLoadingPage != null) {
 			mLoadingPage.loadData();
 		}
+	}
+	//对网络数据的合法性校验
+	public ResultState check(Object object) {
+		if (object != null) {
+			if (object instanceof ArrayList) {
+				ArrayList list = (ArrayList) object;
+				if (list.isEmpty()) {
+					return ResultState.STATE_EMPTY;
+				} else {
+					return ResultState.STATE_SUCCESS;
+				}
+			}
+		}
+
+		return ResultState.STATE_ERROR;
+
 	}
 }

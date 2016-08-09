@@ -1,7 +1,7 @@
 package com.example.googleplay.view;
 
 import com.example.googleplay.R;
-import com.example.utils.UIUtils;
+import com.example.googleplay.utils.UIUtils;
 
 import android.content.Context;
 import android.util.AttributeSet;

@@ -1,4 +1,4 @@
-package com.example.utils;
+package com.example.googleplay.utils;
 
 import com.example.global.GooglePlayApplication;
 

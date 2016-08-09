@@ -1,7 +1,7 @@
 package com.example.googleplay.holder;
 
 import com.example.googleplay.R;
-import com.example.utils.UIUtils;
+import com.example.googleplay.utils.UIUtils;
 
 import android.view.View;
 import android.widget.LinearLayout;
@@ -23,7 +23,7 @@ public class MoreHolder extends BaseHolder<Integer> {
 		if (hasMore) {
 			setData(STATE_MORE_MORE);
 		} else {
-			setData(STATE_MORE_NONE);
+			setData(STATE_MORE_NONE);//最后会回调refreshView
 		}
 	}
 

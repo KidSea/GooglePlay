@@ -4,8 +4,8 @@ import com.example.googleplay.R;
 import com.example.googleplay.R.layout;
 import com.example.googleplay.fragment.BaseFragment;
 import com.example.googleplay.fragment.FragmentFactory;
+import com.example.googleplay.utils.UIUtils;
 import com.example.googleplay.view.PagerTab;
-import com.example.utils.UIUtils;
 
 import android.app.Activity;
 import android.os.Bundle;

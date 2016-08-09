@@ -1,7 +1,8 @@
 package com.example.googleplay.holder;
 
 import com.example.googleplay.R;
-import com.example.utils.UIUtils;
+import com.example.googleplay.domain.AppInfo;
+import com.example.googleplay.utils.UIUtils;
 
 import android.view.View;
 import android.widget.TextView;
@@ -10,7 +11,7 @@ import android.widget.TextView;
  * @author yuxuehai
  *
  */
-public class HomeHolder extends BaseHolder<String> {
+public class HomeHolder extends BaseHolder<AppInfo> {
 
 	private TextView tvContent;
 
@@ -24,10 +25,12 @@ public class HomeHolder extends BaseHolder<String> {
 		return view;
 	}
 
+
 	@Override
-	public void refreshView(String data) {
+	public void refreshView(AppInfo data) {
 		// TODO Auto-generated method stub
-		tvContent.setText(data);
+		tvContent.setText(data.name);
+		
 	}
 
 }
