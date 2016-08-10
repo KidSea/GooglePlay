@@ -7,11 +7,11 @@ import org.json.JSONObject;
 
 import com.example.googleplay.domain.AppInfo;
 /**
- * 主页访问网络的请求
+ * 应用网络请求 
  * @author yuxuehai
  *
  */
-public class HomeProtocl extends BaseProtocle<ArrayList<AppInfo>> {
+public class AppProtocl extends BaseProtocle<ArrayList<AppInfo>> {
 
 	private ArrayList<AppInfo> mAppList;// 应用列表集合
 	private ArrayList<String> mPicList;// 广告图片url集合
@@ -19,7 +19,7 @@ public class HomeProtocl extends BaseProtocle<ArrayList<AppInfo>> {
 	@Override
 	public String getKey() {
 		// TODO Auto-generated method stub
-		return "home";
+		return "app";
 	}
 
 	@Override
@@ -33,16 +33,16 @@ public class HomeProtocl extends BaseProtocle<ArrayList<AppInfo>> {
 		// TODO Auto-generated method stub
 		// Gson ,JsonObject
 		// 使用这个JsonObject，如果遇到{},就是JsonObject;如果遇到[],就是JsonArry
+		// 解析应用列表集合
 		try {
-			JSONObject jo = new JSONObject(result);
-
+			JSONArray ja = new JSONArray(result);
+			
 			// 解析应用列表集合
-			JSONArray ja = jo.getJSONArray("list");
 			mAppList = new ArrayList<AppInfo>();
 			for (int i = 0; i < ja.length(); i++) {
+				JSONObject jo1 = ja.getJSONObject(i);
 				AppInfo info = new AppInfo();
 
-				JSONObject jo1 = (JSONObject) ja.get(i);
 				info.des = jo1.getString("des");
 				info.downloadUrl = jo1.getString("downloadUrl");
 				info.iconUrl = jo1.getString("iconUrl");
@@ -54,21 +54,14 @@ public class HomeProtocl extends BaseProtocle<ArrayList<AppInfo>> {
 
 				mAppList.add(info);
 			}
-			// 解析头条广告图片信息
-			mPicList = new ArrayList<String>();
-			JSONArray ja1 = jo.getJSONArray("picture");
-			for (int i = 0; i < ja1.length(); i++) {
-				mPicList.add(ja1.getString(i));
-			}
-
 			return mAppList;
-
 		} catch (Exception e) {
+			// TODO: handle exception
 			e.printStackTrace();
 		}
 		return null;
+		
+
 	}
-	public ArrayList<String> getPicList() {
-		return mPicList;
-	}
+
 }

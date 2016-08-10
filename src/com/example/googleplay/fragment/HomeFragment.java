@@ -10,7 +10,10 @@ import com.example.googleplay.holder.HomeHolder;
 import com.example.googleplay.http.protocl.HomeProtocl;
 import com.example.googleplay.utils.UIUtils;
 import com.example.googleplay.view.LoadingPage.ResultState;
+import com.example.googleplay.view.MyListView;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.SystemClock;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +37,10 @@ public class HomeFragment extends BaseFragment {
 		// TODO Auto-generated method stub
 		// TextView textView = new TextView(UIUtils.getContext());
 		// textView.setText(getClass().getSimpleName());
-		ListView view = new ListView(UIUtils.getContext());
+		MyListView view = new MyListView(UIUtils.getContext());
+
+
+
 		view.setAdapter(new HomeAdapter(data));
 		return view;
 	}
@@ -51,7 +57,6 @@ public class HomeFragment extends BaseFragment {
 		data = homeProtocl.getData(0);
 		return check(data);
 	}
-
 
 	class HomeAdapter extends MyBaseAdapter<AppInfo> {
 
@@ -101,10 +106,10 @@ public class HomeFragment extends BaseFragment {
 			// }
 			//
 			// SystemClock.sleep(2000);
-			//20，40，60
-			//下一页的数据位置正好等于集合大小
+			// 20，40，60
+			// 下一页的数据位置正好等于集合大小
 			HomeProtocl homeProtocl = new HomeProtocl();
-			ArrayList<AppInfo> moredata= homeProtocl.getData(getListSize());
+			ArrayList<AppInfo> moredata = homeProtocl.getData(getListSize());
 			return moredata;
 		}
 

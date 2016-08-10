@@ -18,12 +18,12 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 /**
- * 首页Holder
+ * App Holder
  * 
  * @author yuxuehai
  * 
  */
-public class HomeHolder extends BaseHolder<AppInfo> {
+public class AppHolder extends BaseHolder<AppInfo> {
 	private TextView tvName;
 	private ImageView ivIcon;
 	private TextView tvSize;
