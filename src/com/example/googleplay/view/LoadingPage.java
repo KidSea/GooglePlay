@@ -119,6 +119,13 @@ public abstract class LoadingPage extends FrameLayout {
 
 	// 开始加载数据
 	public void loadData() {
+		// 状态归零
+		if (mCurrentState == STATE_LOAD_EMPTY
+				|| mCurrentState == STATE_LOAD_ERROR
+				|| mCurrentState == STATE_LOAD_SUCCESS) {
+			mCurrentState = STATE_UNLOAD;
+		}
+		
 		if (mCurrentState != STATE_LOADING) {// 如果当前没有加载，就开始加载数据
 			mCurrentState = STATE_LOADING;
 			new Thread() {

@@ -46,7 +46,7 @@ public class AppFragment extends BaseFragment {
 		}
 
 		@Override
-		public BaseHolder<AppInfo> getHolder() {
+		public BaseHolder<AppInfo> getHolder(int position) {
 			// TODO Auto-generated method stub
 			return new AppHolder();
 		}

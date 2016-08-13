@@ -13,8 +13,8 @@ import android.widget.Toast;
 
 public abstract class MyBaseAdapter<T> extends BaseAdapter {
 
-	private static final int TYPE_NORMAL = 0;
-	private static final int TYPE_LoadMore = 1;
+	private static final int TYPE_NORMAL = 1;//正常加载
+	private static final int TYPE_LoadMore = 0;//加载更多
 
 	private ArrayList<T> data;
 
@@ -55,16 +55,16 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
 		if (position == (getCount() - 1)) {
 			return TYPE_LoadMore;
 		} else {
-			return getInnerType();
+			return getInnerType(position);
 		}
 
 	}
 
 	// 子类可以重写此方法
-	public int getInnerType() {
+	public int getInnerType(int position) {
 		return TYPE_NORMAL;
 	}
-
+	@SuppressWarnings("unchecked")
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
@@ -75,9 +75,11 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
 			// 3.打个标记
 			if (getItemViewType(position) == TYPE_LoadMore) {
 				// 加载更多
+				// 返回加载更多Holder对象
+				// 因为所有界面加载更多的UI显示效果都是一致的,所以加载更多的业务逻辑可以做详细处理
 				holder = new MoreHolder(hasMore());
 			} else {
-				holder = getHolder();
+				holder = getHolder(position);
 			}
 
 		} else {
@@ -107,7 +109,7 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
 	}
 
 	// 返回当前页面的HOLDER对象，子类实现
-	public abstract BaseHolder<T> getHolder();
+	public abstract BaseHolder<T> getHolder(int position);
 
 	// 标记是否正在加载更多
 	private boolean isLoadMore = false;

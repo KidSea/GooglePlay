@@ -3,23 +3,28 @@ package com.example.googleplay.fragment;
 import java.util.ArrayList;
 
 import com.example.googleplay.R;
+import com.example.googleplay.activity.HomeDetailActivity;
 import com.example.googleplay.adapter.MyBaseAdapter;
 import com.example.googleplay.domain.AppInfo;
 import com.example.googleplay.holder.BaseHolder;
+import com.example.googleplay.holder.HomeHeaderHolder;
 import com.example.googleplay.holder.HomeHolder;
 import com.example.googleplay.http.protocl.HomeProtocl;
 import com.example.googleplay.utils.UIUtils;
 import com.example.googleplay.view.LoadingPage.ResultState;
 import com.example.googleplay.view.MyListView;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.SystemClock;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
 /**
  * 主页fragment
@@ -30,6 +35,7 @@ import android.widget.TextView;
 public class HomeFragment extends BaseFragment {
 
 	private ArrayList<AppInfo> data;
+	private ArrayList<String> mPictureList;
 
 	// 加载成功就会回掉这个方法，加载布局，这个方法运行在住线程
 	@Override
@@ -38,10 +44,33 @@ public class HomeFragment extends BaseFragment {
 		// TextView textView = new TextView(UIUtils.getContext());
 		// textView.setText(getClass().getSimpleName());
 		MyListView view = new MyListView(UIUtils.getContext());
+		// 先添加在展示
+		// 给首页增加头条布局展示轮播条
+		HomeHeaderHolder headerHolder = new HomeHeaderHolder();
+		view.addHeaderView(headerHolder.getRootView());
 
-
-
+		if (mPictureList != null) {
+			headerHolder.setData(mPictureList);
+		}
 		view.setAdapter(new HomeAdapter(data));
+
+		view.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				// TODO Auto-generated method stub
+				AppInfo appInfo = data.get(position - 1);
+
+				Intent intent = new Intent(UIUtils.getContext(),
+						HomeDetailActivity.class);
+				// 将包名传递到详情页
+				intent.putExtra("package", appInfo.packageName);
+				startActivity(intent);
+
+			}
+		});
+
 		return view;
 	}
 
@@ -55,6 +84,8 @@ public class HomeFragment extends BaseFragment {
 		// }
 		HomeProtocl homeProtocl = new HomeProtocl();
 		data = homeProtocl.getData(0);
+
+		mPictureList = homeProtocl.getPicList();
 		return check(data);
 	}
 
@@ -90,7 +121,7 @@ public class HomeFragment extends BaseFragment {
 		// }
 
 		@Override
-		public BaseHolder<AppInfo> getHolder() {
+		public BaseHolder<AppInfo> getHolder(int position) {
 			// TODO Auto-generated method stub
 
 			return new HomeHolder();
