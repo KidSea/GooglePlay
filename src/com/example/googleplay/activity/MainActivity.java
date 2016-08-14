@@ -9,11 +9,14 @@ import com.example.googleplay.view.PagerTab;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -29,6 +32,8 @@ public class MainActivity extends BaseActivity {
 	private PagerTab mPagerTab;
 	private ViewPager mViewPager;
 	private MyAdapter mAdapter;
+	private DrawerLayout mDrawerLayout;// 侧边栏布局
+	private ActionBarDrawerToggle mToggle;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +70,8 @@ public class MainActivity extends BaseActivity {
 				
 			}
 		});
+		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerlayout);
+		initActionBar();
 
 	}
 	/**
@@ -103,5 +110,38 @@ public class MainActivity extends BaseActivity {
 			return mTabNames.length;
 		}
 
+	}
+	/**
+	 * 初始化actionbar
+	 */
+	private void initActionBar() {
+		// 获取actionbar对象
+		ActionBar actionBar = getSupportActionBar();
+		// 左上角显示logo
+		actionBar.setHomeButtonEnabled(true);
+		// 左上角显示返回图标, 和侧边栏绑定后显示侧边栏图标
+		actionBar.setDisplayHomeAsUpEnabled(true);
+
+		// 初始化侧边栏开关
+		mToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
+				R.drawable.ic_drawer_am, R.string.drawer_open,
+				R.string.drawer_close);// 参2:DrawerLayout对象, 参3:侧边栏开关图标,
+										// 参4:打开侧边栏文本描述;参5:关闭侧边栏文本描述
+		// 调用当前同步方法，才可以将侧拉菜单和按钮的点击操作绑定起来
+		mToggle.syncState();
+	}
+	// ActionBar上的按钮被点击后的回调方法
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case android.R.id.home:// 左上角logo处被点击
+			mToggle.onOptionsItemSelected(item);//侧边栏收起或者关闭
+			break;
+
+		default:
+			break;
+		}
+
+		return super.onOptionsItemSelected(item);
 	}
 }
