@@ -11,7 +11,11 @@ import android.content.Context;
 import android.graphics.Rect;
 import android.view.View;
 import android.view.ViewGroup;
-
+/**
+ * 随机分布布局
+ * @author yuxuehai
+ *
+ */
 public class RandomLayout extends ViewGroup {
 
 	private Random mRdm;

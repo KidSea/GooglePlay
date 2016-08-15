@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import com.example.googleplay.holder.BaseHolder;
 import com.example.googleplay.holder.MoreHolder;
+import com.example.googleplay.manager.ThreadManager;
+import com.example.googleplay.manager.ThreadManager.ThreadPool;
 import com.example.googleplay.utils.UIUtils;
 
 import android.view.View;
@@ -118,9 +120,12 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
 	public void loadMore(final MoreHolder holder) {
 		if (!isLoadMore) {
 			isLoadMore = true;
-			new Thread() {
+			
+			ThreadManager.getThreadPool().execute(new Runnable() {
+				
 				@Override
 				public void run() {
+					// TODO Auto-generated method stub
 					final ArrayList<T> moreData = onLoadMore();
 					UIUtils.runOnUiThread(new Runnable() {
 
@@ -151,9 +156,9 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
 							isLoadMore = false;
 						}
 					});
-
 				}
-			}.start();
+			});
+	
 		}
 
 	}

@@ -5,7 +5,11 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.util.AttributeSet;
 import android.widget.ListView;
-
+/**
+ * 自定义Listview
+ * @author yuxuehai
+ *
+ */
 public class MyListView extends ListView {
 
 	public MyListView(Context context, AttributeSet attrs, int defStyle) {

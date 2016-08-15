@@ -1,6 +1,7 @@
 package com.example.googleplay.view;
 
 import com.example.googleplay.R;
+import com.example.googleplay.manager.ThreadManager;
 import com.example.googleplay.utils.UIUtils;
 
 import android.content.Context;
@@ -128,8 +129,12 @@ public abstract class LoadingPage extends FrameLayout {
 		
 		if (mCurrentState != STATE_LOADING) {// 如果当前没有加载，就开始加载数据
 			mCurrentState = STATE_LOADING;
-			new Thread() {
+			// 异步加载网路数据
+			ThreadManager.getThreadPool().execute(new Runnable() {
+				
+				@Override
 				public void run() {
+					// TODO Auto-generated method stub
 					final ResultState resultState = onLoad();
 					
 					//子线程不能更新UI 必须在住线程
@@ -147,9 +152,8 @@ public abstract class LoadingPage extends FrameLayout {
 							}
 						}
 					});
-				
-				};
-			}.start();
+				}
+			});
 
 		}
 	}

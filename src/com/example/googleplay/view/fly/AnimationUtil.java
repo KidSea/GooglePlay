@@ -6,7 +6,11 @@ import android.view.animation.AnimationSet;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.ScaleAnimation;
-
+/**
+ * 动画
+ * @author yuxuehai
+ *
+ */
 public class AnimationUtil {
 
 	private static final long MEDIUM = 500;

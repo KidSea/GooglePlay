@@ -9,6 +9,8 @@
         android:targetSdkVersion="16" />
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:name="com.example.global.GooglePlayApplication"
@@ -27,7 +29,6 @@
         </activity>
         <activity android:name="com.example.googleplay.activity.HomeDetailActivity" >
         </activity>
->
     </application>
 
 </manifest>

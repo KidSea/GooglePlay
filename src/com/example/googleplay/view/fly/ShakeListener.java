@@ -5,7 +5,11 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-
+/**
+ * 震动工具
+ * @author yuxuehai
+ *
+ */
 public class ShakeListener implements SensorEventListener {
 	private static final int FORCE_THRESHOLD = 250;
 	private static final int TIME_THRESHOLD = 100;

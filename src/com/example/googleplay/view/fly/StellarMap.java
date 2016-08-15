@@ -10,7 +10,11 @@ import android.view.View.OnTouchListener;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.widget.FrameLayout;
-
+/**
+ * 手势识别工具
+ * @author yuxuehai
+ *
+ */
 public class StellarMap extends FrameLayout implements AnimationListener, OnTouchListener, OnGestureListener {
 
 	private RandomLayout mHidenGroup;
